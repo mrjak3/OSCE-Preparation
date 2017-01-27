@@ -1,0 +1,11 @@
+s_string("GET");
+s_string(" ");
+s_string("/favicon.ico");
+s_string("HTTP/1.1");
+s_string("\r\n");
+s_string("Host: ");
+s_string("192.168.37.131");
+s_string("\r\n");
+s_string_variable("If-Modified-Since: ");
+s_string(Fri, 21 Apr 2000 05:09:44 GMT");
+s_string("\r\n");
