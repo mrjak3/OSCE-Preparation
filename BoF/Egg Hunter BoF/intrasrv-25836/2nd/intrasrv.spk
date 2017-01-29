@@ -1,0 +1,12 @@
+s_string("GET");
+s_string(" ");
+s_string("/ ");
+s_string("HTTP/1.1");
+s_string("\r\n");
+s_string_variable("Host: ");
+s_string("192.168.37.131");
+s_string("\r\n");
+s_string("Content-Type: ");
+s_string("application/x-www-form-urlencoded\r\n");
+s_string("User-Agent: Mozilla/4.0 (Windows XP 5.1)\r\n"
+s_string_variable("Content-Length: 1048580\r\n\r\n");
